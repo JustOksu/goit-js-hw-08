@@ -93,3 +93,14 @@ gallery.addEventListener("click", function (event) {
     console.log("Посилання на велике зображення:", largeImageUrl);
   }
 });
+
+const galleryImages = document.querySelectorAll(".gallery-image");
+
+galleryImages.forEach((image) => {
+  image.addEventListener("click", function () {
+    const largeImageUrl = this.dataset.source;
+
+    const lightbox = basicLightbox.create(`<img src="${largeImageUrl}">`);
+    lightbox.show();
+  });
+});
