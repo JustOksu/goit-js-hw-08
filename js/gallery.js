@@ -63,3 +63,33 @@ const images = [
     description: "Lighthouse Coast Sea",
   },
 ];
+
+const gallery = document.querySelector(".gallery");
+
+const galleryItems = images
+  .map((image) => {
+    return `
+                <li class="gallery-item">
+                    <a class="gallery-link" href="${image.original}">
+                        <img
+                            class="gallery-image"
+                            src="${image.preview}"
+                            data-source="${image.original}"
+                            alt="${image.description}"
+                        />
+                    </a>
+                </li>
+            `;
+  })
+  .join("");
+
+gallery.innerHTML = galleryItems;
+
+gallery.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  if (event.target.tagName === "IMG") {
+    const largeImageUrl = event.target.dataset.source;
+    console.log("Посилання на велике зображення:", largeImageUrl);
+  }
+});
